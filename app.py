@@ -1,7 +1,12 @@
 from flask import Flask, render_template, jsonify, request
 from src.helper import download_hugging_face_embeddings
 from langchain_pinecone import PineconeVectorStore
-from langchain_openai import ChatOpenAI
+# 
+# If you want to use OpenAI's models, uncomment the line Below
+# from langchain_openai import ChatOpenAI
+# Jf you want to use OpenAI's models, uncomment the line Above.
+#
+from langchain_deepseek import ChatDeepSeek #I am using DeepSeek's model.
 from langchain.chains import create_retrieval_chain
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.prompts import ChatPromptTemplate
@@ -12,14 +17,20 @@ import os
 
 app = Flask(__name__)
 
+# If you want to use OpenAI's models, uncomment the line Below
+# OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
+# os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
+# chatModel = ChatOpenAI(model="gpt-4o")
+# Jf you want to use OpenAI's models, uncomment the line Above.
 
 load_dotenv()
 
 PINECONE_API_KEY = os.environ.get('PINECONE_API_KEY')
-OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
+DEEPSEEK_API_KEY = os.environ.get('DEEPSEEK_API_KEY')
+
 
 os.environ["PINECONE_API_KEY"] = PINECONE_API_KEY
-os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
+os.environ["DEEPSEEK_API_KEY"]= DEEPSEEK_API_KEY
 
 
 embeddings = download_hugging_face_embeddings()
@@ -35,7 +46,7 @@ docsearch = PineconeVectorStore.from_existing_index(
 retriever = docsearch.as_retriever(
     search_type="similarity", search_kwargs={"k": 3})
 
-chatModel = ChatOpenAI(model="gpt-4o")
+chatModel=ChatDeepSeek(model="deepseek-chat")
 prompt = ChatPromptTemplate.from_messages(
     [
         ("system", system_prompt),
