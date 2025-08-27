@@ -18,4 +18,19 @@ Includes step-by-step instructions to:
 - Set up GitHub secrets for secure CI/CD
 - Launch your chatbot on AWS
 
+How to Setup:
+Step 1. Run this command: python -m venv venv
+Step 2. If Windows 11: 
+```bash
+python -m venv .venv
+```
+Step 3. Add
+```bash
+source .venv/Scripts/activate
+```
+in .bashrc file (This is for Windows Devices Only. Find the code for your OS)
 
+Step 4. Run 
+```bash
+source .bashrc```
+Whenever you open the project. To make sure you are in Virtual Enviroment.
