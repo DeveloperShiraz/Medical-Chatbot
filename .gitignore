@@ -1,5 +1,6 @@
 # Ignore virtual environment
 .venv/
+.env
 
 # Ignore Medical_Chatbot.egg-info folder
 Medical_Chatbot.egg-info/

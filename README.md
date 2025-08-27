@@ -31,4 +31,5 @@ source .venv/Scripts/activate
 
 Step 4. Run whenever you open the project. To make sure you are in Virtual Enviroment.
 ```bash
-source .bashrc```
+source .bashrc
+```
