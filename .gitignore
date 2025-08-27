@@ -1,0 +1,10 @@
+# Ignore virtual environment
+.venv/
+
+# Ignore Medical_Chatbot.egg-info folder
+Medical_Chatbot.egg-info/
+
+# Ignore IDE files
+.idea/
+__pycache__/
+*.pyc
