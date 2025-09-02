@@ -3,7 +3,11 @@ version: '3.8'
 services:
   medical-chatbot:
     build: .
+    # This is the ECR image URL; ensure you have access to this repository. This is the 1st step to deploy to AWS. That is : 1. Retrieve an authentication token and authenticate your Docker client to your registry. Use the AWS CLI:
     ports:
+    # The 1st port is the host port, the 2nd port is the container port.
+    # This means that 1st number is where you check the service on your local machine, and the 2nd number is where the service is running inside the container.
+    # the 2nd number should the number defined in the app.py file.
       - "8080:8080"
     environment:
       - PINECONE_API_KEY=${PINECONE_API_KEY}
